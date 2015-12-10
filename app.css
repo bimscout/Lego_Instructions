@@ -1,0 +1,32 @@
+﻿/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 60px tall */
+body {
+  padding-top: 60px;
+  font-family: 'proxima-nova', HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+}
+
+a {
+    text-decoration: none;
+}
+
+/*
+ * Global add-ons
+ */
+
+.sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+.navbar-fixed-top {
+  border: 0;
+}
+

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="liApp">
+    <head lang="en">
+        <meta charset="UTF-8">
+        <script src="//use.typekit.net/iel6fmp.js"></script>
+        <script>try{Typekit.load();}catch(e){}</script>
+        <link href="/bootstrap.min.css" rel="stylesheet">
+        <link href="/app.css" rel="stylesheet">
+
+
+        <style type="text/css">
+            body {
+                /*font-family: "helvetica";*/
+                color : #333;
+            }
+            [ac-chart] {
+                float:left;
+                width: 48%;
+                height: 400px;
+                margin: 0 1%;
+            }
+        </style>
+
+        <title>Lego Instructions</title>
+
+    </head>
+
+    <body ng-controller="RootController as root">
+        <div top-nav></div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12" theme-list></div>
+            </div>
+        </div>
+
+
+    </body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <!--<script type="text/javascript" src="library\angular\angular.min.js"></script>-->
+
+    <script src="/app.js"></script>
+
+</html>
