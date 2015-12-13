@@ -1,1 +1,3 @@
-angular.module('liApp', []);
+angular.module('liApp', [
+    'ngRoute'
+]);

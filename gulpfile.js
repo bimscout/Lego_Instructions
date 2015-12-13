@@ -27,7 +27,7 @@ gulp.task('js', function() {
 });
 
 gulp.task('watch:js', ['js'], function(){
-    gulp.watch(['app.module.js','components/**/*.js'], ['js'])
+    gulp.watch(['app.module.js', 'app.routes.js','components/**/*.js'], ['js'])
 });
 
 gulp.task('css', function() {
