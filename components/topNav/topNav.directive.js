@@ -18,5 +18,8 @@ function topNav() {
 
 function TopNavController() {
     var vm = this;
-    vm.navItems = [{name: "Themes", link: "/"}];
+    vm.navItems = [
+        {name: "Themes", link: "themes"},
+        {name: "Admin", link: "admin"}
+    ];
 }
