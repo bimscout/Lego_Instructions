@@ -1,7 +1,7 @@
 <div ng-repeat="theme in themeList.themes">
     <div ng-show="{{theme.setcount}}" class="col-sm-4 col-md-2">
         <div class="thumbnail">
-            <a ng-href="/theme/{{theme._id}}">
+            <a ui-sref="products({ themeid: theme._id })">
                 <img ng-src="{{theme.imageUrl}}" alt="...">
             </a>
         </div>

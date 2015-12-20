@@ -1,7 +1,29 @@
 angular.module('liApp')
-.config(function($routeProvider) {
-        $routeProvider
-            .when('/', { controller: 'themeListController', controllerAs: 'themeList', template: '<div class="col-md-12" theme-list></div>'})
-            .when('/register', { controller: 'registerController', templateUrl: 'register.html'})
-            .when('/login', { controller: 'loginController', templateUrl: 'login.html'})
-    });
+    .config(['$stateProvider', '$urlRouterProvider',
+        function($stateProvider, $urlRouterProvider) {
+            $urlRouterProvider.otherwise('/themes');
+            $stateProvider
+/*                .state('root', {
+                    url: '/',
+                    views: {
+                        'content@root': { template: '<div class="col-md-12" theme-list></div>'}
+                    }
+                })*/
+                .state('themes', {
+                    url: '/themes',
+                    template: "<div class=\"col-md-12\" theme-list></div>"
+                })
+                .state('products', {
+                    url: '/theme/:themeid',
+                    template: "<div class=\"col-md-12\" product-list></div>"
+                })
+                .state('instructions', {
+                    url: '/product/:productid',
+                    template: "<div class=\"col-md-12\" instruction-list></div>"
+                })
+                .state('admin', {
+                    url: '/admin',
+                    template: "<div class=\"col-md-12\" admin></div>"
+                });
+        }
+    ]);
