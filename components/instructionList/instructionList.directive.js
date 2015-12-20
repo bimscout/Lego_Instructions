@@ -18,7 +18,7 @@ function instructionList() {
 
 function InstructionListController(instructionListSvc, $stateParams) {
     var vm = this;
-    instructionListSvc.fetch($stateParams.themeid)
+    instructionListSvc.fetch($stateParams.productid)
         .then(function (instructions) {
             vm.instructions = instructions.data;
         }, function (response) {
