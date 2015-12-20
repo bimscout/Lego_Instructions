@@ -1,0 +1,10 @@
+﻿<div ng-repeat="instruction in instructionList.instructions">
+    <div class="col-sm-4 col-md-2">
+        <div class="thumbnail">
+            <span>{{instruction.booknumber}}</span>
+            <a ui-sref="instruction({ instructionid: instruction._id })">
+                <img ng-src="{{instruction.imgUrl}}" alt="...">
+            </a>
+        </div>
+    </div>
+</div>

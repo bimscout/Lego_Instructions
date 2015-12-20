@@ -17,9 +17,9 @@ angular.module('liApp')
                     url: '/theme/:themeid',
                     template: "<div class=\"col-md-12\" product-list></div>"
                 })
-                .state('product', {
+                .state('instructions', {
                     url: '/product/:productid',
-                    template: "<div class=\"col-md-12\" product-detail></div>"
+                    template: "<div class=\"col-md-12\" instruction-list></div>"
                 })
                 .state('admin', {
                     url: '/admin',
