@@ -24,6 +24,16 @@ angular.module('liApp')
                 .state('admin', {
                     url: '/admin',
                     template: "<div class=\"col-md-12\" admin></div>"
-                });
+                })
+                .state('register', {
+                    url: '/register',
+                    template: "<div class=\"col-md-12\" register></div>"
+                })
+                .state('login', {
+                    url: '/login',
+                    template: "<div class=\"col-md-12\" login></div>"
+                })
+
+            ;
         }
     ]);

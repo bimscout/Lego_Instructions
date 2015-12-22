@@ -10,6 +10,8 @@ router.use(express.static(__dirname + '/../components/productList'));
 router.use(express.static(__dirname + '/../components/instructionList'));
 router.use(express.static(__dirname + '/../components/admin'));
 router.use(express.static(__dirname + '/../components/topNav'));
+router.use(express.static(__dirname + '/../components/register'));
+router.use(express.static(__dirname + '/../components/login'));
 
 router.get('/', function (req, res) {
     res.sendfile('index.html')
