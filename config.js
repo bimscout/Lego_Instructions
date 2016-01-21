@@ -1,3 +1,3 @@
 module.exports = {
-    secret: 'AndrewLikesStarWarsBest'
+    secret: 'QqWzUhB6DQKi*4L,YhCuRk{C4aoCD9sF;uL'
 };

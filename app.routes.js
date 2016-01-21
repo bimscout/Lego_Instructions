@@ -1,14 +1,9 @@
 angular.module('liApp')
-    .config(['$stateProvider', '$urlRouterProvider',
+    .config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
         function($stateProvider, $urlRouterProvider) {
+            //$locationProvider.html5Mode(true);
             $urlRouterProvider.otherwise('/themes');
             $stateProvider
-/*                .state('root', {
-                    url: '/',
-                    views: {
-                        'content@root': { template: '<div class="col-md-12" theme-list></div>'}
-                    }
-                })*/
                 .state('themes', {
                     url: '/themes',
                     template: "<div class=\"col-md-12\" theme-list></div>"
@@ -25,15 +20,14 @@ angular.module('liApp')
                     url: '/admin',
                     template: "<div class=\"col-md-12\" admin></div>"
                 })
-                .state('register', {
+/*                .state('register', {
                     url: '/register',
                     template: "<div class=\"col-md-12\" register></div>"
                 })
                 .state('login', {
                     url: '/login',
                     template: "<div class=\"col-md-12\" login></div>"
-                })
-
-            ;
+                })*/
+                ;
         }
     ]);

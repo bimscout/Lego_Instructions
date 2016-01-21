@@ -3,16 +3,15 @@ angular.module('liApp')
         var svc = this;
 
         svc.getUser = function() {
-            return $http.get('/api/users', {
-                headers: {'X-Auth': this.token}
-            })
+            return $http.get('/api/users')
         };
 
-        svc.login = function(username, password) {
+        svc.login = function(username, password, role) {
             return $http.post('/api/sessions', {
-                username: username, password: password
+                username: username, password: password, role: role
             }).then(function(val) {
                 svc.token = val.data;
+                $http.defaults.headers.common['X-Auth'] = val.data;
                 return svc.getUser()
             })
         }
