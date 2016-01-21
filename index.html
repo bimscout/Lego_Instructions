@@ -7,19 +7,16 @@
         <link href="/bootstrap.min.css" rel="stylesheet">
         <link href="/app.css" rel="stylesheet">
 
+        <link rel="apple-touch-icon" sizes="144x144" href="/images/appicons/lego144.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/images/appicons/lego114.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/images/appicons/lego72.png">
+        <link rel="apple-touch-icon" href="/images/appicons/lego57.png">
 
-        <style type="text/css">
-            body {
-                /*font-family: "helvetica";*/
-                color : #333;
-            }
-            [ac-chart] {
-                float:left;
-                width: 48%;
-                height: 400px;
-                margin: 0 1%;
-            }
-        </style>
+        <!--Force view to 1:1-->
+        <meta name = "viewport" content = "initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no, width = device-width">
+
+        <!--Force reload of index.html-->
+        <META HTTP-EQUIV="EXPIRES" CONTENT="0">
 
         <title>Lego Instructions</title>
 
@@ -32,7 +29,7 @@
         <div class="container-fluid content">
             <div class="row">
                 <ui-view>
-                    <i>Some content will load here!</i>
+                    <i>Loading instructions...</i>
                 </ui-view>
             </div>
         </div>
@@ -41,7 +38,6 @@
     </body>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.min.js"></script>
 
     <!--<script type="text/javascript" src="library\angular\angular.min.js"></script>-->
     <script src="/angular-ui-router.min.js"></script>

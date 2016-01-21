@@ -21,5 +21,7 @@ function TopNavController() {
     vm.navItems = [
         {name: "Themes", link: "themes"},
         {name: "Admin", link: "admin"}
+/*        {name: "Register", link: "register"},
+        {name: "Login", link: "login"}*/
     ];
 }
