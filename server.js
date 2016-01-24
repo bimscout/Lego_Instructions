@@ -12,6 +12,7 @@ app.use('/api/sessions', require('./controllers/api/sessions'));
 app.use('/api/users', require('./controllers/api/users'));
 app.use(require('./controllers/static'));
 
-app.listen(3009, function() {
-    console.log('Server listening on', 3009)
+var port = process.env.PORT || 3009;
+app.listen(port, function() {
+    console.log('Server ', process.pid, ' listening on', port)
 });
