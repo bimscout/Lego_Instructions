@@ -18,7 +18,7 @@ gulp.task('dev:server', function(){
 });
 
 gulp.task('js', function() {
-    gulp.src(['app.module.js', 'app.routes.js', 'components/**/*.js'])
+    gulp.src(['library/angular-ui-router/angular-ui-router.min.js','app.module.js', 'app.routes.js', 'components/**/*.js'])
         .pipe(sourcemaps.init())
         .pipe(concat('app.js'))
         .pipe(ngAnnotate())
