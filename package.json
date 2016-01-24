@@ -15,5 +15,9 @@
     "gulp-uglify": "^1.5.1",
     "jwt-simple": "^0.4.0",
     "mongoose": "^4.2.9"
+  },
+  "scripts": {
+      "start": "node boot.js",
+      "postinstall": "gulp build"
   }
 }
