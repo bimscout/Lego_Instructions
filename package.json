@@ -17,7 +17,7 @@
     "mongoose": "^4.2.9"
   },
   "scripts": {
-      "start": "node boot.js",
+      "start": "node server.js",
       "postinstall": "gulp build"
   }
 }
