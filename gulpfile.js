@@ -7,6 +7,7 @@ var minifyCss = require('gulp-minify-css');
 var nodemon = require('gulp-nodemon');
 
 gulp.task('dev', ['watch:css', 'watch:js']);
+gulp.task('build', ['css', 'js']);
 
 gulp.task('dev:server', function(){
     nodemon({
