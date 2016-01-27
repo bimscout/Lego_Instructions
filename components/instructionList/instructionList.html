@@ -1,8 +1,8 @@
 ﻿<div ng-repeat="instruction in instructionList.instructions" class="col-xs-3">
         <div class="thumbnail">
             <!--<span>{{instruction.booknumber}}</span>-->
-            <a ng-href="http://lego.polkinhorn.net/img/instr/{{instruction.pdfUrl}}" target="_blank">
-                <img ng-src="http://lego.polkinhorn.net/img/product/{{instruction.imgUrl}}" alt="...">
+            <a ng-href="http://legoassets.polkinhorn.net/img/instr/{{instruction.pdfUrl}}" target="_blank">
+                <img ng-src="http://legoassets.polkinhorn.net/img/product/{{instruction.imgUrl}}" alt="...">
             </a>
             <div class="caption text-overflow" ng-show="instruction.description"><small>{{instruction.description}}</small></div>
             <div class="caption text-overflow" ng-hide="instruction.description"><small>Book {{instruction.booknumber}}</small></div>
