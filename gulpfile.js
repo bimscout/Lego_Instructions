@@ -32,7 +32,7 @@ gulp.task('watch:js', ['js'], function(){
 });
 
 gulp.task('css', function() {
-    return gulp.src(['library/bootstrap/bootstrap.min.css','app.css'])
+    return gulp.src(['app.css'])
         .pipe(minifyCss({compatibility: 'ie8'}))
         .pipe(gulp.dest('assets'));
 });
