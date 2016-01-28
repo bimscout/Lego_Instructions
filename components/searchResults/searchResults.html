@@ -1,0 +1,10 @@
+﻿<div ng-repeat="product in productList.products | orderBy:product.name">
+    <div class="col-xs-2">
+        <div class="thumbnail">
+            <!--<span>{{product.name}}</span>-->
+            <a ui-sref="searchResults({ productid: product._id })">
+                <img ng-src="http://legoassets.polkinhorn.net/img/product/{{product.imgUrl}}" alt="...">
+            </a>
+        </div>
+    </div>
+</div>
