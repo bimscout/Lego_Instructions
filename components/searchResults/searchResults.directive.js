@@ -18,7 +18,7 @@ function searchResults() {
 
 function SearchResultsController(searchResultsSvc, $stateParams) {
     var vm = this;
-    searchResultsSvc.fetch($stateParams.themeid)
+    searchResultsSvc.fetch($stateParams.q)
         .then(function (products) {
             vm.products = products.data;
         }, function (response) {
