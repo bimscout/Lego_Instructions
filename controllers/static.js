@@ -12,6 +12,7 @@ router.use(express.static(__dirname + '/../components/admin'));
 router.use(express.static(__dirname + '/../components/topNav'));
 router.use(express.static(__dirname + '/../components/register'));
 router.use(express.static(__dirname + '/../components/login'));
+router.use(express.static(__dirname + '/../components/searchResults'));
 
 router.get('/', function (req, res) {
     res.sendfile('index.html')

@@ -20,6 +20,10 @@ angular.module('liApp')
                     url: '/admin',
                     template: "<div class=\"col-md-12\" admin></div>"
                 })
+                .state('search', {
+                    url: '/searchResults?q',
+                    template: "<div class=\"col-md-12\" search-results></div>"
+                })
 /*                .state('register', {
                     url: '/register',
                     template: "<div class=\"col-md-12\" register></div>"

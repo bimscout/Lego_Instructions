@@ -1,0 +1,11 @@
+﻿<div class="h3">Search results for "{{searchResults.searchTerm}}"</div>
+<div ng-repeat="product in searchResults.products | orderBy:product.name">
+    <div class="col-xs-2">
+        <div class="thumbnail">
+            <!--<span>{{product.name}}</span>-->
+            <a ui-sref="instructions({ productid: product._id })">
+                <img ng-src="http://legoassets.polkinhorn.net/img/product/{{product.imgUrl}}" alt="...">
+            </a>
+        </div>
+    </div>
+</div>

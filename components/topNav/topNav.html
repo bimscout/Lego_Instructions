@@ -16,8 +16,9 @@
             <p ng-if="currentUser" class="navbar-text navbar-right">
                 Hi {{currentUser.username}}
             </p>
-            <form class="navbar-form navbar-right">
-                <input type="text" class="form-control" placeholder="Search...">
+            <form ng-submit="topNav.search()" class="navbar-form navbar-right">
+                <input ng-model="topNav.searchTerm" type="text" class="form-control" placeholder="Search..." />
+                <!--<input type="submit" id="submit" value="Submit" />-->
             </form>
         </div>
     </div>
