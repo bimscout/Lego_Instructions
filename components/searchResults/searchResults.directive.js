@@ -18,6 +18,7 @@ function searchResults() {
 
 function SearchResultsController(searchResultsSvc, $stateParams) {
     var vm = this;
+    vm.searchTerm = $stateParams.q;
     searchResultsSvc.fetch($stateParams.q)
         .then(function (products) {
             vm.products = products.data;
@@ -25,4 +26,5 @@ function SearchResultsController(searchResultsSvc, $stateParams) {
             $scope.data = response.data || "Request failed";
             $scope.status = response.status;
         })
+
 }

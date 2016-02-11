@@ -1,4 +1,5 @@
-﻿<div ng-repeat="product in searchResults.products | orderBy:product.name">
+﻿<div class="h3">Search results for "{{searchResults.searchTerm}}"</div>
+<div ng-repeat="product in searchResults.products | orderBy:product.name">
     <div class="col-xs-2">
         <div class="thumbnail">
             <!--<span>{{product.name}}</span>-->

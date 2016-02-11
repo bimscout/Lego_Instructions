@@ -16,7 +16,7 @@ function topNav() {
     return directive;
 }
 
-function TopNavController() {
+function TopNavController($state) {
     var vm = this;
     vm.navItems = [
         {name: "Themes", link: "themes"},
@@ -24,4 +24,16 @@ function TopNavController() {
 /*        {name: "Register", link: "register"},
         {name: "Login", link: "login"}*/
     ];
+
+    // exports
+
+    vm.search = function () {
+
+        $state.go('search', {q: vm.searchTerm}, {location: true});
+
+//        if (vm.searchTerm) {
+//            $state.go('search', {q: vm.searchTerm}, {location: true});
+//        }
+        vm.searchTerm = '';
+    };
 }
