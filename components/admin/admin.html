@@ -1,2 +1,284 @@
-﻿<h1>Admin</h1>
-        <p> some other admin functions </p>
+﻿
+<div class="row">
+<div class="col-xs-3">
+    <h4>
+        <span>Themes</span>&nbsp;&nbsp;<span><small><a href="" ng-click="admin.addTheme()"><span class="glyphicon glyphicon-plus"></span></a></small></span>
+
+    </h4>
+    <ul class="list-unstyled">
+        <li ng-repeat="theme in admin.themes"><a href="" ng-click="admin.fetchProducts(theme)">{{theme.name}}</a></li>
+    </ul>
+</div>
+<div class="col-xs-3" ng-show="admin.activeTheme && !admin.addingTheme">
+    <!--List the themes-->
+    <div class="row">
+        <h4>
+            <span>{{admin.activeTheme.name}} Products</span>&nbsp;&nbsp;<span><small><a href="" ng-click="admin.addProduct()"><span class="glyphicon glyphicon-plus"></span></a></small></span>
+        </h4>
+        <ul class="list-unstyled">
+            <li ng-repeat="product in admin.products"><a href="" ng-click="admin.fetchInstructions(product)">{{product.name}}</a></li>
+        </ul>
+        <span ng-hide="admin.products.length" class="text-muted">No Products.  Click the plus sign above to add a product.</span>
+    </div>
+    <!--Edit the Active theme-->
+    <div class="row" ng-show="!admin.addingTheme && !admin.addingProduct && !admin.admin.activeTheme">
+        <br>
+        <h4>Edit {{admin.activeTheme.name}}</h4>
+        <form role="form" class="form-horizontal">
+
+            <div class="form-group">
+                <label for="themeName" class="col-sm-3">Name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control input-sm" id="themeName" ng-model="admin.activeTheme.name">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="themeImgUrl" class="col-sm-3">Image URL</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control col-sm-4 input-sm" id="themeImgUrl" ng-model="admin.activeTheme.imageUrl">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="themeCount" class="col-sm-3">Product Count</label>
+                <div class="col-sm-4">
+                    <input type="number" class="form-control col-sm-4" min="0" value="0" id="themeCount" ng-model="admin.activeTheme.setcount">
+                </div>
+                <div class="col-sm-3">{{products.length}}</div>
+            </div>
+
+            <button type="submit" class="btn btn-success" ng-click="admin.updateTheme()">Update</button>
+
+        </form>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-6 thumbnail">
+            <img ng-src="http://legoassets.polkinhorn.net/img/products/{{admin.activeTheme.imageUrl}}" alt="...">
+        </div>
+    </div>
+</div>
+<div class="col-xs-6">
+    <div class="row">
+        <!--List the instructions for the active set-->
+        <div ng-show="admin.activeProduct && !admin.addingProduct && !admin.addingInstruction">
+            <div class="row">
+                <h4>{{admin.activeProduct.name}} Set</h4>
+                <div class="col-sm-3 col-sm-offproduct-3 thumbnail">
+                    <img ng-src="http://legoassets.polkinhorn.net/img/product/{{admin.activeProduct.imgUrl}}" alt="...">
+                </div>
+            </div>
+            <div class="row">
+
+                <form role="form" class="form-horizontal">
+
+                    <div class="form-group">
+                        <label for="productName" class="col-sm-3">Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control input-sm" id="productName" ng-model="admin.activeProduct.name">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productNumber" class="col-sm-3">Lego Number</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control col-sm-4 input-sm" id="productNumber" ng-model="admin.activeProduct.legosetid">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productDesc" class="col-sm-3">Description</label>
+                        <div class="col-sm-9">
+                            <textarea maxlength="255" id="productDesc" class="form-control col-sm-4 input-sm" ng-model="admin.activeProduct.description"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="theme" class="col-sm-3">Theme</label>
+                        <div class="col-sm-9">
+                            <select ng-options="p.id as p.name for p in admin.themes" id="theme" class="form-control col-sm-4 input-sm" ng-model="admin.activeProduct.themeid"></select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="imgUrl" class="col-sm-3">Image URL</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control col-sm-4 input-sm" id="imgUrl" ng-model="admin.activeProduct.imgUrl">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-success" ng-click="admin.updateProduct()">Update</button>
+                </form>
+            </div>
+
+            <br>
+            <div class="row">
+                <h4>
+                    <span>Instructions</span>&nbsp;&nbsp;<span><small><a href="" ng-click="admin.addInstruction()"><span class="glyphicon glyphicon-plus"></span></a></small></span>
+                </h4>
+                <div ng-repeat="instruction in admin.instructions" class="col-xs-4">
+                    <div class="thumbnail">
+                        <a href="" ng-click="admin.fetchInstruction(instruction)">
+                            <img ng-src="http://legoassets.polkinhorn.net/img/product/{{instruction.imgUrl}}" alt="...">
+                        </a>
+                        <div class="caption text-overflow" ng-show="instruction.description"><small>{{instruction.description}}</small></div>
+                        <div class="caption text-overflow" ng-hide="instruction.description"><small>Book {{instruction.booknumber}}</small></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="row" ng-show="admin.activeInstruction">
+                    <h4>Instruction Book {{admin.activeInstruction.booknumber}}</h4>
+                    <form role="form" class="form-horizontal">
+
+                        <div class="form-group">
+                            <label for="intrpdfurl" class="col-sm-3">PDF URL</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="intrpdfurl" ng-model="admin.activeInstruction.pdfurl">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="intrimgurl" class="col-sm-3">Image URL</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control col-sm-4" id="intrimgurl" ng-model="admin.activeInstruction.imgurl">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="instrDesc" class="col-sm-3">Description</label>
+                            <div class="col-sm-9">
+                                <textarea maxlength="255" id="instrDesc" class="form-control col-sm-4" ng-model="admin.activeInstruction.description"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="instrBookNum" class="col-sm-3">Book Number</label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control col-sm-4" min="1" max="10" value="1" id="instrBookNum" ng-model="admin.activeInstruction.booknumber">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-success" ng-click="admin.updateInstruction()">Update</button>
+                    </form>
+                </div>
+
+
+                <span ng-hide="admin.instructions.length" class="text-muted">No Instructions.  Click the plus sign above to add instructions.</span>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div ng-show="admin.addingProduct">
+            <h4>New Product for {{admin.activeTheme.name}}</h4>
+            <form role="form" class="form-horizontal">
+
+                <div class="form-group">
+                    <label for="newproductName" class="col-sm-3">Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="newproductName" ng-model="newProduct.name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="newproductNumber" class="col-sm-3">Lego Number</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control col-sm-4" id="newproductNumber" ng-model="newProduct.legoproductid">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="newproductDesc" class="col-sm-3">Description</label>
+                    <div class="col-sm-9">
+                        <textarea maxlength="255" id="newproductDesc" class="form-control col-sm-4" ng-model="newProduct.description"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="newimgUrl" class="col-sm-3">Image URL</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control col-sm-4" id="newimgUrl" ng-model="newProduct.imgUrl">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="newimgUrl" class="col-sm-3">Image</label>
+                    <div class="col-sm-2 thumbnail">
+                        <img style="max-width: 80px; max-height: 80px" ng-src="/img/theme/{{newProduct.imgUrl}}">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-success" ng-click="admin.saveNewProduct()">Submit</button>
+                <button type="cancel" class="btn btn-warning" ng-click="admin.cancelNewProduct()">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row" ng-show="admin.addingInstruction">
+        <h4>New Instruction Book for {{admin.activeProduct.name}}</h4>
+        <form role="form" class="form-horizontal">
+
+            <div class="form-group">
+                <label for="newintrpdfurl" class="col-sm-3">PDF URL</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="newintrpdfurl" ng-model="newInstruction.pdfurl">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="newintrimgurl" class="col-sm-3">Image URL</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control col-sm-4" id="newintrimgurl" ng-model="newInstruction.imgurl">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="newInstrDesc" class="col-sm-3">Description</label>
+                <div class="col-sm-9">
+                    <textarea maxlength="255" id="newInstrDesc" class="form-control col-sm-4" ng-model="newInstruction.description"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="newInstrBookNum" class="col-sm-3">Book Number</label>
+                <div class="col-sm-2">
+                    <input type="number" class="form-control col-sm-4" min="1" max="10" value="1" id="newInstrBookNum" ng-model="newInstruction.booknumber">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success" ng-click="admin.saveNewInstruction()">Submit</button>
+            <button type="cancel" class="btn btn-warning" ng-click="admin.cancelNewInstruction()">Cancel</button>
+        </form>
+    </div>
+
+</div>
+
+<div class="col-xs-9" ng-show="admin.addingTheme">
+    <h4>New Theme</h4>
+    <form role="form" class="form-horizontal">
+
+        <div class="form-group">
+            <label for="newThemeName" class="col-sm-3">Name</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="newThemeName" ng-model="newTheme.name">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="newThemeImgUrl" class="col-sm-3">Image URL</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control col-sm-4" id="newThemeImgUrl" ng-model="newTheme.imageurl">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success" ng-click="admin.saveNewTheme()">Submit</button>
+        <button type="cancel" class="btn btn-warning" ng-click="admin.cancelNewTheme()">Cancel</button>
+    </form>
+</div>
+
+</div>
