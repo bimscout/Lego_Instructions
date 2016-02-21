@@ -5,6 +5,11 @@ angular.module('liApp')
         };
 
         this.update = function(instruction) {
-            return $http.post('/api/instruction/' + instruction._id, instruction)
+            return $http.put('/api/instruction/' + instruction._id, instruction)
         };
+
+        this.add = function(instruction) {
+            return $http.post('/api/instructions/', instruction)
+        }
+
     }]);

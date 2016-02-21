@@ -136,7 +136,7 @@
                 </h4>
                 <div ng-repeat="instruction in admin.instructions" class="col-xs-4">
                     <div class="thumbnail">
-                        <a href="" ng-click="admin.fetchInstruction(instruction)">
+                        <a href="" ng-click="admin.editInstruction(instruction)">
                             <img ng-src="http://legoassets.polkinhorn.net/img/product/{{instruction.imgUrl}}" alt="...">
                         </a>
                         <div class="caption text-overflow" ng-show="instruction.description"><small>{{instruction.description}}</small></div>
@@ -156,14 +156,14 @@
                         <div class="form-group">
                             <label for="intrpdfurl" class="col-sm-3">PDF URL</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="intrpdfurl" ng-model="admin.activeInstruction.pdfurl">
+                                <input type="text" class="form-control" id="intrpdfurl" ng-model="admin.activeInstruction.pdfUrl">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="intrimgurl" class="col-sm-3">Image URL</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control col-sm-4" id="intrimgurl" ng-model="admin.activeInstruction.imgurl">
+                                <input type="text" class="form-control col-sm-4" id="intrimgurl" ng-model="admin.activeInstruction.imgUrl">
                             </div>
                         </div>
 
@@ -181,7 +181,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-success" ng-click="admin.updateInstruction()">Update</button>
+                        <button type="submit" class="btn btn-success" ng-click="admin.updateInstruction(admin.activeInstruction)">Update</button>
                     </form>
                 </div>
 
@@ -251,32 +251,32 @@
             <div class="form-group">
                 <label for="newintrpdfurl" class="col-sm-3">PDF URL</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="newintrpdfurl" ng-model="newInstruction.pdfurl">
+                    <input type="text" class="form-control" id="newintrpdfurl" ng-model="admin.newInstruction.pdfUrl">
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="newintrimgurl" class="col-sm-3">Image URL</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control col-sm-4" id="newintrimgurl" ng-model="newInstruction.imgurl">
+                    <input type="text" class="form-control col-sm-4" id="newintrimgurl" ng-model="admin.newInstruction.imgUrl">
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="newInstrDesc" class="col-sm-3">Description</label>
                 <div class="col-sm-9">
-                    <textarea maxlength="255" id="newInstrDesc" class="form-control col-sm-4" ng-model="newInstruction.description"></textarea>
+                    <textarea maxlength="255" id="newInstrDesc" class="form-control col-sm-4" ng-model="admin.newInstruction.description"></textarea>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="newInstrBookNum" class="col-sm-3">Book Number</label>
                 <div class="col-sm-2">
-                    <input type="number" class="form-control col-sm-4" min="1" max="10" value="1" id="newInstrBookNum" ng-model="newInstruction.booknumber">
+                    <input type="number" class="form-control col-sm-4" min="1" max="10" value="1" id="newInstrBookNum" ng-model="admin.newInstruction.booknumber">
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-success" ng-click="admin.saveNewInstruction()">Submit</button>
+            <button type="submit" class="btn btn-success" ng-click="admin.saveNewInstruction(admin.newInstruction)">Submit</button>
             <button type="cancel" class="btn btn-warning" ng-click="admin.cancelNewInstruction()">Cancel</button>
         </form>
     </div>
@@ -292,18 +292,18 @@
         <div class="form-group">
             <label for="newThemeName" class="col-sm-3">Name</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" id="newThemeName" ng-model="newTheme.name">
+                <input type="text" class="form-control" id="newThemeName" ng-model="admin.newTheme.name">
             </div>
         </div>
 
         <div class="form-group">
             <label for="newThemeImgUrl" class="col-sm-3">Image URL</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control col-sm-4" id="newThemeImgUrl" ng-model="newTheme.imageurl">
+                <input type="text" class="form-control col-sm-4" id="newThemeImgUrl" ng-model="admin.newTheme.imgUrl">
             </div>
         </div>
 
-        <button type="submit" class="btn btn-success" ng-click="admin.saveNewTheme()">Submit</button>
+        <button type="submit" class="btn btn-success" ng-click="admin.saveNewTheme(admin.newTheme)">Submit</button>
         <button type="cancel" class="btn btn-warning" ng-click="admin.cancelNewTheme()">Cancel</button>
     </form>
 </div>

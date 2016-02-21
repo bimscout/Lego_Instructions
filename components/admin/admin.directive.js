@@ -29,7 +29,7 @@ function AdminController(themeListSvc, productListSvc, instructionListSvc) {
     //  Themes
     vm.activeTheme = null;
     vm.addingTheme = false;
-    vm.newTheme = {};
+    vm.newTheme = {"setcount": 0};
 
     vm.addTheme = function() {
         vm.activeTheme = null;
@@ -63,11 +63,11 @@ function AdminController(themeListSvc, productListSvc, instructionListSvc) {
         vm.activeInstruction = null;
         vm.activeTheme = theme;
         vm.addingTheme = false;
-        vm.newTheme = {};
+        vm.newTheme = {"setcount": 0};
     };
     vm.cancelNewTheme = function() {
         vm.addingTheme = false;
-        vm.newTheme = {};
+        vm.newTheme = {"setcount": 0};
     };
 
 
@@ -81,6 +81,7 @@ function AdminController(themeListSvc, productListSvc, instructionListSvc) {
         productListSvc.fetch(theme._id)
             .then(function (products) {
                 vm.products = products.data;
+                vm.instructions = null;
             }, function (response) {
                 $scope.data = response.data || "Request failed";
                 $scope.status = response.status;
@@ -148,28 +149,31 @@ function AdminController(themeListSvc, productListSvc, instructionListSvc) {
         vm.activeProduct = product;
         vm.activeInstruction = null;
     };
+    vm.editInstruction = function(instruction) {
+        vm.activeInstruction = instruction;
+    };
     vm.addInstruction = function() {
         vm.newInstruction.productid = vm.activeProduct._id;
-        vm.activeInstruction = instruction;
+        vm.activeInstruction = null;
         vm.addingInstruction = true;
     };
     vm.saveNewInstruction = function(instruction) {
         instructionListSvc.add(instruction)
             .then(function (instruction) {
-                vm.instructions.unshift(instruction);
+                vm.instructions.push(instruction);
             }, function(response) {
                 $scope.data = response.data || "Request failed";
                 $scope.status = response.status;
             });
         vm.activeInstruction = instruction;
         vm.addingInstruction = false;
-        vm.newInstruction = {};
+        vm.newInstruction = {"productid": vm.activeProduct._id};
     };
     vm.cancelNewInstruction = function() {
         vm.addingInstruction = false;
-        vm.newInstruction = {};
+        vm.newInstruction = {"productid": vm.activeProduct._id};
     };
-    vm.updateInstruction = function() {
+    vm.updateInstruction = function(instruction) {
         instructionListSvc.update(instruction)
             .then(function (instruction) {
                 angular.forEach(vm.instructions, function(ins, i) {
