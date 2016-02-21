@@ -1,5 +1,7 @@
 ﻿
 <div class="row">
+
+<!-- Column 1 -->
 <div class="col-xs-3">
     <h4>
         <span>Themes</span>&nbsp;&nbsp;<span><small><a href="" ng-click="admin.addTheme()"><span class="glyphicon glyphicon-plus"></span></a></small></span>
@@ -9,6 +11,9 @@
         <li ng-repeat="theme in admin.themes"><a href="" ng-click="admin.fetchProducts(theme)">{{theme.name}}</a></li>
     </ul>
 </div>
+
+<!-- Column 2 - List Products for selected Theme-->
+
 <div class="col-xs-3" ng-show="admin.activeTheme && !admin.addingTheme">
     <!--List the themes-->
     <div class="row">
@@ -20,38 +25,7 @@
         </ul>
         <span ng-hide="admin.products.length" class="text-muted">No Products.  Click the plus sign above to add a product.</span>
     </div>
-    <!--Edit the Active theme-->
-    <div class="row" ng-show="!admin.addingTheme && !admin.addingProduct && !admin.admin.activeTheme">
-        <br>
-        <h4>Edit {{admin.activeTheme.name}}</h4>
-        <form role="form" class="form-horizontal">
-
-            <div class="form-group">
-                <label for="themeName" class="col-sm-3">Name</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control input-sm" id="themeName" ng-model="admin.activeTheme.name">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="themeImgUrl" class="col-sm-3">Image URL</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control col-sm-4 input-sm" id="themeImgUrl" ng-model="admin.activeTheme.imageUrl">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="themeCount" class="col-sm-3">Product Count</label>
-                <div class="col-sm-4">
-                    <input type="number" class="form-control col-sm-4" min="0" value="0" id="themeCount" ng-model="admin.activeTheme.setcount">
-                </div>
-                <div class="col-sm-3">{{products.length}}</div>
-            </div>
-
-            <button type="submit" class="btn btn-success" ng-click="admin.updateTheme()">Update</button>
-
-        </form>
-    </div>
+<!-- Edit the Active theme was here -->
     <br>
     <div class="row">
         <div class="col-sm-6 thumbnail">
@@ -59,9 +33,49 @@
         </div>
     </div>
 </div>
+
+<!-- Column 3 -->
+
 <div class="col-xs-6">
+
+    <!--Edit the Active theme-->
+    <div class="row" ng-show="!admin.addingTheme && !admin.addingProduct && admin.activeTheme && !admin.activeProduct">
+        <!--<br>-->
+        <div class="row">
+            <h4>Edit {{admin.activeTheme.name}}</h4>
+            <form role="form" class="form-horizontal">
+
+                <div class="form-group">
+                    <label for="themeName" class="col-sm-3">Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control input-sm" id="themeName" ng-model="admin.activeTheme.name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="themeImgUrl" class="col-sm-3">Image URL</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control col-sm-4 input-sm" id="themeImgUrl" ng-model="admin.activeTheme.imageUrl">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="themeCount" class="col-sm-3">Product Count</label>
+                    <div class="col-sm-4">
+                        <input type="number" class="form-control col-sm-4" min="0" value="0" id="themeCount" ng-model="admin.activeTheme.setcount">
+                    </div>
+                    <div class="col-sm-3">{{products.length}}</div>
+                </div>
+
+                <button type="submit" class="btn btn-success" ng-click="admin.updateTheme()">Update</button>
+
+            </form>
+        </div>
+    </div>
+
+
     <div class="row">
-        <!--List the instructions for the active set-->
+        <!-- Edit a Product -->
         <div ng-show="admin.activeProduct && !admin.addingProduct && !admin.addingInstruction">
             <div class="row">
                 <h4>{{admin.activeProduct.name}} Set</h4>
@@ -108,11 +122,14 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-success" ng-click="admin.updateProduct()">Update</button>
+                    <button type="submit" class="btn btn-success" ng-click="admin.updateProduct(admin.activeProduct)">Update</button>
                 </form>
             </div>
 
             <br>
+
+            <!-- List the Instructions for the active Product -->
+
             <div class="row">
                 <h4>
                     <span>Instructions</span>&nbsp;&nbsp;<span><small><a href="" ng-click="admin.addInstruction()"><span class="glyphicon glyphicon-plus"></span></a></small></span>
@@ -127,6 +144,9 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Edit an Instruction -->
+
             <div class="row">
 
                 <div class="row" ng-show="admin.activeInstruction">
@@ -165,6 +185,7 @@
                     </form>
                 </div>
 
+                <!-- No Instructions for the active Product -->
 
                 <span ng-hide="admin.instructions.length" class="text-muted">No Instructions.  Click the plus sign above to add instructions.</span>
             </div>
@@ -172,6 +193,8 @@
 
         </div>
     </div>
+
+    <!-- Add a new Product -->
 
     <div class="row">
         <div ng-show="admin.addingProduct">
@@ -181,28 +204,28 @@
                 <div class="form-group">
                     <label for="newproductName" class="col-sm-3">Name</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="newproductName" ng-model="newProduct.name">
+                        <input type="text" class="form-control" id="newproductName" ng-model="admin.newProduct.name">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="newproductNumber" class="col-sm-3">Lego Number</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control col-sm-4" id="newproductNumber" ng-model="newProduct.legoproductid">
+                        <input type="text" class="form-control col-sm-4" id="newproductNumber" ng-model="admin.newProduct.legosetid">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="newproductDesc" class="col-sm-3">Description</label>
                     <div class="col-sm-9">
-                        <textarea maxlength="255" id="newproductDesc" class="form-control col-sm-4" ng-model="newProduct.description"></textarea>
+                        <textarea maxlength="255" id="newproductDesc" class="form-control col-sm-4" ng-model="admin.newProduct.description"></textarea>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="newimgUrl" class="col-sm-3">Image URL</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control col-sm-4" id="newimgUrl" ng-model="newProduct.imgUrl">
+                        <input type="text" class="form-control col-sm-4" id="newimgUrl" ng-model="admin.newProduct.imgUrl">
                     </div>
                 </div>
 
@@ -213,11 +236,13 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-success" ng-click="admin.saveNewProduct()">Submit</button>
+                <button type="submit" class="btn btn-success" ng-click="admin.saveNewProduct(admin.newProduct)">Submit</button>
                 <button type="cancel" class="btn btn-warning" ng-click="admin.cancelNewProduct()">Cancel</button>
             </form>
         </div>
     </div>
+
+    <!-- Add a new Instruction -->
 
     <div class="row" ng-show="admin.addingInstruction">
         <h4>New Instruction Book for {{admin.activeProduct.name}}</h4>
@@ -257,6 +282,8 @@
     </div>
 
 </div>
+
+<!-- Column 2 - Adding a new Theme -->
 
 <div class="col-xs-9" ng-show="admin.addingTheme">
     <h4>New Theme</h4>

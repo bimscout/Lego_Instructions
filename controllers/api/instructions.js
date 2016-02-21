@@ -24,4 +24,25 @@ router.post('/', function (req, res, next) {
     })
 });
 
+
+router.put('/:instructionid', function (req, res, next) {
+
+    Instruction.findById(req.params.instructionid, function(err, instruction) {
+        if (err)
+            res.send(err);
+        instruction.productid = req.body.productid;
+        instruction.booknumber = req.body.booknumber;
+        instruction.pdfUrl = req.body.pdfUrl;
+        instruction.imgUrl = req.body.imgUrl;
+        instruction.description = req.body.description;
+
+        instruction.save(function(err, instruction) {
+            if(err) {return next(err)}
+            res.json(200, instruction)
+        })
+
+    });
+
+});
+
 module.exports = router;
