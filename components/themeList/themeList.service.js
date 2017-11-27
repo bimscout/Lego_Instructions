@@ -5,6 +5,10 @@ angular.module('liApp')
         };
 
         this.update = function(theme) {
-            return $http.put('/api/theme/' + theme._id, theme)
+            return $http.put('/api/themes/' + theme._id, theme)
         };
+
+        this.add = function(theme) {
+            return $http.post('/api/themes/', theme)
+        }
     }]);

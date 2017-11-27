@@ -39,10 +39,10 @@ function AdminController(themeListSvc, productListSvc, instructionListSvc) {
     };
     vm.updateTheme = function() {
         themeListSvc.update(theme)
-            .then(function (theme) {
+            .then(function (response) {
                 angular.forEach(vm.themes, function(t, i) {
-                    if (t._id === theme._id ) {
-                        vm.themes[i] = theme;
+                    if (t._id === response.data._id ) {
+                        vm.themes[i] = response.data;
                     }
                 });
             }, function (response) {
@@ -50,20 +50,21 @@ function AdminController(themeListSvc, productListSvc, instructionListSvc) {
                 $scope.status = response.status;
             });
     };
-    vm.saveNewTheme = function() {
+    vm.saveNewTheme = function(theme) {
         themeListSvc.add(theme)
-            .then(function (theme) {
-                vm.themes.unshift(theme);
-                vm.activeTheme.setcount += 1;
-                themeListSvc.update(vm.activeTheme);
+            .then(function (response) {
+                vm.themes.unshift(response.data);
+                vm.activeTheme = response.data;
+                vm.addingTheme = false;
+                vm.newTheme = {"setcount": 0};
+                vm.activeInstruction = null;
+                vm.activeProduct = null;
             }, function(response) {
                 $scope.data = response.data || "Request failed";
                 $scope.status = response.status;
             });
-        vm.activeInstruction = null;
-        vm.activeTheme = theme;
-        vm.addingTheme = false;
-        vm.newTheme = {"setcount": 0};
+
+
     };
     vm.cancelNewTheme = function() {
         vm.addingTheme = false;
@@ -99,19 +100,19 @@ function AdminController(themeListSvc, productListSvc, instructionListSvc) {
 
     vm.saveNewProduct = function(product) {
         productListSvc.add(product)
-            .then(function (product) {
-                vm.products.unshift(product);
+            .then(function (response) {
+                vm.products.unshift(response.data);
                 // increment the set count on the current theme, then save it.
                 vm.activeTheme.setcount += 1;
+                vm.activeInstruction = null;
+                vm.activeProduct = response.data;
+                vm.addingProduct = false;
+                vm.newProduct = {};
                 themeListSvc.update(vm.activeTheme);
             }, function(response) {
                 $scope.data = response.data || "Request failed";
                 $scope.status = response.status;
             });
-        vm.activeInstruction = null;
-        vm.activeProduct = product;
-        vm.addingProduct = false;
-        vm.newProduct = {};
     };
     vm.cancelNewProduct = function() {
         vm.addingProduct = false;
@@ -159,15 +160,15 @@ function AdminController(themeListSvc, productListSvc, instructionListSvc) {
     };
     vm.saveNewInstruction = function(instruction) {
         instructionListSvc.add(instruction)
-            .then(function (instruction) {
-                vm.instructions.push(instruction);
+            .then(function (response) {
+                vm.instructions.push(response.data);
+                vm.activeInstruction = response.data;
+                vm.addingInstruction = false;
+                vm.newInstruction = {"productid": vm.activeProduct._id};
             }, function(response) {
                 $scope.data = response.data || "Request failed";
                 $scope.status = response.status;
             });
-        vm.activeInstruction = instruction;
-        vm.addingInstruction = false;
-        vm.newInstruction = {"productid": vm.activeProduct._id};
     };
     vm.cancelNewInstruction = function() {
         vm.addingInstruction = false;
@@ -175,10 +176,10 @@ function AdminController(themeListSvc, productListSvc, instructionListSvc) {
     };
     vm.updateInstruction = function(instruction) {
         instructionListSvc.update(instruction)
-            .then(function (instruction) {
+            .then(function (response) {
                 angular.forEach(vm.instructions, function(ins, i) {
-                    if (ins._id === instruction._id ) {
-                        vm.instructions[i] = instruction;
+                    if (ins._id === response.data._id ) {
+                        vm.instructions[i] = response.data;
                     }
                 });
             }, function (response) {

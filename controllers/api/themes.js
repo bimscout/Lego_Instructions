@@ -14,7 +14,7 @@ router.post('/', function (req, res, next) {
     var theme = new Theme({
         name: req.body.name,
         imgUrl: req.body.imgUrl,
-        setCount: req.body.setCount
+        setcount: req.body.setcount
     });
     theme.save(function(err, theme) {
         if(err) {return next(err)}
@@ -30,7 +30,7 @@ router.put('/:themeid', function (req, res, next) {
             res.send(err);
         theme.name = req.body.name;
         theme.imgUrl = req.body.imgUrl;
-        theme.setCount = req.body.setCount;
+        theme.setcount = req.body.setcount;
 
         theme.save(function(err, theme) {
             if(err) {return next(err)}
